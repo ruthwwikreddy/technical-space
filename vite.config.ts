@@ -13,7 +13,7 @@ export default defineConfig(({ mode, command }) => {
     base,
     define: {
       // Only expose VITE_ prefixed environment variables for security
-      ...Object.keys(env).reduce((prev, key) => {
+      ...Object.keys(env).reduce<Record<string, any>>((prev, key) => {
         prev[`process.env.${key}`] = JSON.stringify(env[key]);
         return prev;
       }, {}),
